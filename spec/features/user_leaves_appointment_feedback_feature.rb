@@ -11,7 +11,7 @@ feature "User leaves Appointment Feedback" do
     it "informs the user who they are leaving feedback for" do
       visit new_appointment_feedback_path(mentor.activation_code,
                                           :appointment_id => appointment.id)
-      page.should have_content("Leave Feedback for #{student.name}")
+      expect(page).to have_content("Leave Feedback for #{student.name}")
     end
 
     it "upon submission the user's feedback is saved" do
@@ -41,7 +41,7 @@ feature "User leaves Appointment Feedback" do
       feedback = FactoryGirl.create(:appointment_feedback)
 
       visit feedback_user_path(feedback.feedback_receiver.activation_code)
-      page.should have_text(feedback.text)
+      expect(page).to have_text(feedback.text)
     end
   end
 end

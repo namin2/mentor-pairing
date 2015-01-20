@@ -6,7 +6,7 @@ feature "Calendar" do
       appointment = FactoryGirl.create(:appointment, availability: FactoryGirl.create(:availability, :start_time => DateTime.now, :duration => 1))
       visit edit_user_path(appointment.mentor.activation_code)
       within("#calendar") do
-        page.should have_css(".mentee_name", :text => appointment.mentee.name)
+        expect(page).to have_css(".mentee_name", :text => appointment.mentee.name)
       end
     end
   end
@@ -16,7 +16,7 @@ feature "Calendar" do
       mentor = FactoryGirl.create(:mentor)
       visit edit_user_path(mentor.activation_code)
       within("#calendar") do
-        page.should_not have_css(".mentor_name")
+        expect(page).not_to have_css(".mentor_name")
       end
     end
   end

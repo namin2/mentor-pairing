@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Availability do
-  it { should belong_to(:mentor) }
+  it { is_expected.to belong_to(:mentor) }
 
   describe "when first created" do
     before(:each) do
@@ -26,7 +26,7 @@ describe Availability do
     end
 
     context "when validating city" do
-      it { should ensure_inclusion_of(:city).in_array(Location::LOCATION_NAMES) }
+      it { is_expected.to validate_inclusion_of(:city).in_array(Location::LOCATION_NAMES) }
     end
 
     describe '::today' do
@@ -34,7 +34,7 @@ describe Availability do
         now = Time.new(2013,12,2,0,0,0, "-05:00")
           .in_time_zone("Eastern Time (US & Canada)")
 
-        Time.stub(:now) { now }
+        allow(Time).to receive(:now) { now }
 
         utc_eod = Availability.utc_eod_for_tz(now, "Central Time (US & Canada)")
 
@@ -79,27 +79,27 @@ describe Availability do
         cst_eod = Time.new(2013,12,1,23,59,59, "-06:00")
           .in_time_zone("Central Time (US & Canada)")
 
-        Availability
+        expect(Availability
           .utc_eod_for_tz(time_in_est, "Central Time (US & Canada)")
-          .to_s
-          .should eq(cst_eod.utc.to_s)
+          .to_s)
+          .to eq(cst_eod.utc.to_s)
       end
     end
 
     describe '::CITY_ROUTE_CONSTRAINT' do
       it 'should reject invalid cities' do
-        Availability::CITY_ROUTE_CONSTRAINT.call(city:'atlantis')
-          .should eq nil
+        expect(Availability::CITY_ROUTE_CONSTRAINT.call(city:'atlantis'))
+          .to eq nil
       end
 
       it 'should reject remote' do
-        Availability::CITY_ROUTE_CONSTRAINT.call(city:'remote')
-          .should eq false
+        expect(Availability::CITY_ROUTE_CONSTRAINT.call(city:'remote'))
+          .to eq false
       end
 
       it 'should accept valid city' do
-        Availability::CITY_ROUTE_CONSTRAINT.call(city:'san-francisco')
-          .should eq true
+        expect(Availability::CITY_ROUTE_CONSTRAINT.call(city:'san-francisco'))
+          .to eq true
       end
     end
   end

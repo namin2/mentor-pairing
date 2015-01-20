@@ -11,7 +11,7 @@ describe WeeklyMetricsPresenter do
   context "#for_week_of" do
     it "is the current time if when not initialized with a value" do
       now = Time.now
-      Time.stub(:now).and_return(now)
+      allow(Time).to receive(:now).and_return(now)
 
       wm_presenter = WeeklyMetricsPresenter.new
       expect(wm_presenter.for_week_of).to eq(now)

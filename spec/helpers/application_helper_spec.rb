@@ -6,7 +6,7 @@ end
 
 describe ApplicationHelper do
   def stub_link_to(symbol, date, value)
-    helper.stub(:link_to).with(symbol, month: date.strftime("%Y-%m-01")).and_return(value)
+    allow(helper).to receive(:link_to).with(symbol, month: date.strftime("%Y-%m-01")).and_return(value)
   end
   context "month_link" do
     before :each do

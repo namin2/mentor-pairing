@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe User do
-  it { should have_many(:mentoring_appointments) }
-  it { should have_many(:menteeing_appointments) }
-  it { should have_many(:availabilities) }
-  it { should have_many(:received_kudos) }
-  it { should have_many(:given_kudos) }
+  it { is_expected.to have_many(:mentoring_appointments) }
+  it { is_expected.to have_many(:menteeing_appointments) }
+  it { is_expected.to have_many(:availabilities) }
+  it { is_expected.to have_many(:received_kudos) }
+  it { is_expected.to have_many(:given_kudos) }
 
   it "should show kudos in pretty_name" do
     ryan = User.new(:first_name => "Ryan", :total_kudos => 42)
-    ryan.pretty_name.should == "Ryan - 42"
+    expect(ryan.pretty_name).to eq("Ryan - 42")
   end
 end

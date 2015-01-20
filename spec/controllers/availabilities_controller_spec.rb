@@ -13,7 +13,7 @@ describe AvailabilitiesController do
     it "returns mentor info with JSON" do
       availability = FactoryGirl.create(:availability)
       get :index, :format => :json
-      JSON.parse(response.body).first["mentor_name"].should == availability.mentor.name
+      expect(JSON.parse(response.body).first["mentor_name"]).to eq(availability.mentor.name)
     end
 
     it "handles datepicker style start times" do
@@ -34,18 +34,18 @@ describe AvailabilitiesController do
   describe '#remaining' do
     it 'should assign physical cities' do
       get :remaining
-      assigns(:cities).should =~ Location.all.select(&:physical?)
+      expect(assigns(:cities)).to match_array(Location.all.select(&:physical?))
     end
   end
 
   describe '#remaining_in_city' do
     it 'should provide availabilities' do
-      Availability.should_receive(:visible).and_call_original
-      Availability.should_receive(:today).with('Central Time (US & Canada)').and_call_original
-      Availability.should_receive(:in_city).with('Chicago').and_call_original
-      Availability.should_receive(:without_appointment_requests).and_call_original
+      expect(Availability).to receive(:visible).and_call_original
+      expect(Availability).to receive(:today).with('Central Time (US & Canada)').and_call_original
+      expect(Availability).to receive(:in_city).with('Chicago').and_call_original
+      expect(Availability).to receive(:without_appointment_requests).and_call_original
       get :remaining_in_city, :city => 'chicago'
-      assigns(:availabilities).should be_a(ActiveRecord::Relation)
+      expect(assigns(:availabilities)).to be_a(ActiveRecord::Relation)
     end
 
     context "via regular GET request" do

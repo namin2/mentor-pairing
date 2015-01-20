@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Kudo do
-  it { should belong_to(:appointment) }
-  it { should belong_to(:mentor) }
-  it { should belong_to(:mentee) }
+  it { is_expected.to belong_to(:appointment) }
+  it { is_expected.to belong_to(:mentor) }
+  it { is_expected.to belong_to(:mentee) }
 
   describe '#create' do
     let(:mentor) { FactoryGirl.create(:mentor) }

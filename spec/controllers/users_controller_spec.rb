@@ -17,7 +17,7 @@ describe UsersController do
                        :interests => mentor.interests }.to_json
 
           xhr :post, :find_mentor, email: mentor.email, :format => :json
-          response.body.should eq expected
+          expect(response.body).to eq expected
         end
       end
 
@@ -25,7 +25,7 @@ describe UsersController do
 
         it "returns JSON object with no_user property equal to true" do
           xhr :post, :find_mentor, email: "something_not_found", :format => :json
-          response.body.should eq ( { :no_user => true }.to_json)
+          expect(response.body).to eq ( { :no_user => true }.to_json)
         end
       end
     end

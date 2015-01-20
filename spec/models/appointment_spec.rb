@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Appointment do
-  it { should belong_to(:mentor) }
-  it { should belong_to(:mentee) }
-  it { should have_many(:kudos) }
+  it { is_expected.to belong_to(:mentor) }
+  it { is_expected.to belong_to(:mentee) }
+  it { is_expected.to have_many(:kudos) }
 
   describe "when first created" do
     before(:each) do
@@ -51,7 +51,7 @@ describe Appointment do
     it 'is visible when the appointment is entirely in the future' do
       availability = FactoryGirl.create(:availability, { :start_time => Time.now + 4.hours })
       appointment = FactoryGirl.create(:appointment, :availability => availability)
-      Appointment.visible.should include(appointment)
+      expect(Appointment.visible).to include(appointment)
     end
 
     it 'is visible when the appointment has begun, but not ended' do
@@ -60,7 +60,7 @@ describe Appointment do
         :duration => 60
       })
       appointment = FactoryGirl.create(:appointment, :availability => availability)
-      Appointment.visible.should include(appointment)
+      expect(Appointment.visible).to include(appointment)
     end
 
     it 'is not visible when the appointment has ended' do
@@ -69,7 +69,7 @@ describe Appointment do
         :duration => 60
       })
       appointment = FactoryGirl.create(:appointment, :availability => availability)
-      Appointment.visible.should_not include(appointment)
+      expect(Appointment.visible).not_to include(appointment)
     end
 
   end
