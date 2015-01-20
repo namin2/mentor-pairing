@@ -37,6 +37,6 @@ class AppointmentsController < ApplicationController
                                            :feedback_giver => @feedback_giver,
                                            :feedback_receiver => @feedback_receiver,
                                            :text => params[:feedback][:text])
-    UserMailer.new_feedback_notification(feedback).deliver
+    UserMailer.new_feedback_notification(feedback).deliver_now
   end
 end

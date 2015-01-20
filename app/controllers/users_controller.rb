@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def send_manage_link
     user = User.find_by(email: params[:email])
     if user
-      UserMailer.management_link(user).deliver
+      UserMailer.management_link(user).deliver_now
       flash[:notice] = "Management link sent."
       redirect_to root_path
     else

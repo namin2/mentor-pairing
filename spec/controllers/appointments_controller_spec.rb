@@ -21,8 +21,8 @@ describe AppointmentsController do
       availability.appointment_requests.create!(:mentee => mentee)
       availability.appointment_requests.create!(:mentee => other_mentee)
 
-      UserMailer.should_receive(:appointment_confirmation).and_return(double(:deliver => true))
-      UserMailer.should_receive(:appointment_rejection).with(availability, other_mentee).and_return(double(:deliver => true))
+      UserMailer.should_receive(:appointment_confirmation).and_return(double(:deliver_now => true))
+      UserMailer.should_receive(:appointment_rejection).with(availability, other_mentee).and_return(double(:deliver_now => true))
 
       post :create, code: mentor.activation_code, mentee_id: mentee.id, availability_id: availability.id
     end

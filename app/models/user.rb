@@ -26,20 +26,20 @@ class User < ActiveRecord::Base
   end
 
   def send_activation
-    UserMailer.user_activation(self).deliver
+    UserMailer.user_activation(self).deliver_now
     self
   end
 
   def send_appointment_request(availability)
-    UserMailer.appointment_request(availability, self).deliver
+    UserMailer.appointment_request(availability, self).deliver_now
   end
 
   def send_appointment_confirmation(appointment)
-    UserMailer.appointment_confirmation(appointment).deliver
+    UserMailer.appointment_confirmation(appointment).deliver_now
   end
 
   def send_appointment_rejection(availability)
-    UserMailer.appointment_rejection(availability, self).deliver
+    UserMailer.appointment_rejection(availability, self).deliver_now
   end
 
   private
