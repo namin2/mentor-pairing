@@ -7,7 +7,7 @@ require "action_mailer/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
-Bundler.require(:default, Rails.env)
+Bundler.require(*Rails.groups)
 
 module MentorPairing
   class Application < Rails::Application

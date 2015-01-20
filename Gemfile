@@ -4,8 +4,8 @@ gem "compass-rails", "1.1.3"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 gem "pg"
-gem "rails"
-gem "sass-rails"
+gem "rails", '4.0.13'
+gem "sass-rails", '~>4.0.2'
 gem "susy"
 gem "uglifier"
 gem  "gravtastic"
