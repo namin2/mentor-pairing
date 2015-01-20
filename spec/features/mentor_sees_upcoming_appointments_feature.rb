@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature "a mentor can see upcoming appointments" do
   let!(:appointment) { FactoryGirl.create(:appointment) }
@@ -9,7 +9,7 @@ feature "a mentor can see upcoming appointments" do
     visit(edit_user_path(mentor.activation_code))
 
     save_and_open_page
-    
+
     expect(page).to have_content mentor.name
     expect(page).to have_content mentee.name
   end

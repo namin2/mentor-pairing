@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "Staff Views Weekly Metrics" do
   scenario "displays the total number of appointments this week" do
@@ -8,9 +8,9 @@ feature "Staff Views Weekly Metrics" do
                       :duration => 60)
       FactoryGirl.create(:appointment, :availability => availability)
     }
-    
+
     visit weekly_metrics_path
-    
+
     expect(page).to have_content("10 appointments this week")
   end
 

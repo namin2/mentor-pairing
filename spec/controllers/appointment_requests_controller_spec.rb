@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe AppointmentRequestsController do
   describe "#create" do
@@ -21,7 +21,7 @@ describe AppointmentRequestsController do
       user = FactoryGirl.create(:mentor, :activated => false)
       expect {
         post :create, email: user.email, :first_name => "Erik", :last_name => "Allar", :twitter_handle => "erik"
-      }.not_to change{User.count}.by(1)
+      }.to_not change{User.count}
     end
   end
 end

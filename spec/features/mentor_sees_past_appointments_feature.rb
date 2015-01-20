@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature "a mentor can see past appointments" do
   let!(:appointment) { FactoryGirl.create(:appointment) }

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe FeedbackRequestSender do
   before(:each) { ActionMailer::Base.deliveries.clear }
@@ -20,7 +20,7 @@ describe FeedbackRequestSender do
     end
 
     it "sends an email to each user for a given appointment" do
-      appointment = FactoryGirl.create(:appointment, 
+      appointment = FactoryGirl.create(:appointment,
                                        :start_time => 2.hours.ago,
                                        :end_time => 2.minutes.ago)
       sender = FeedbackRequestSender.new

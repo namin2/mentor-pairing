@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Location do
 	describe "#find_by_name" do
@@ -31,7 +31,7 @@ describe Location do
 		let(:location) { Location.new("Foo Bar") }
 
 		it "should convert full name names to slugs"  do
-			expect(location.slug).to eq ("foo-bar")	
+			expect(location.slug).to eq ("foo-bar")
 		end
 	end
 

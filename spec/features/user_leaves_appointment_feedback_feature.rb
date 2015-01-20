@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "User leaves Appointment Feedback" do
   context "when a user provides the proper code and appointment id" do

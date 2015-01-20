@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 class FakeApplicationHelper
   include ApplicationHelper
 
@@ -24,7 +24,7 @@ describe ApplicationHelper do
       expect(link).to eq("next_month_link")
     end
   end
-  
+
   context "#appointment_time_in_words" do
     def make_appointment(time = 7.days.from_now)
       availability = FactoryGirl.create(:availability, :start_time => time, :duration => 60)

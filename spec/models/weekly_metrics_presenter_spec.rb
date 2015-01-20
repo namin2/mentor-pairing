@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe WeeklyMetricsPresenter do
   def appointment_for(start_time, duration = 60)

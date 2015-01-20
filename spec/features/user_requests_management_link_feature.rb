@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "User Requests Management Link" do
   scenario "with valid user, user is sent management link email" do

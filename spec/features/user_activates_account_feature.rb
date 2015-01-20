@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "User activates account" do
   scenario "following link from email activates the account" do

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Availability do
   it { should belong_to(:mentor) }
@@ -54,7 +54,7 @@ describe Availability do
 
       it "should fetch availabilities without appointment requests" do
         params = {
-          timezone:"UTC", 
+          timezone:"UTC",
           start_time: Time.new(2013,12,2,0,0,0, "-05:00"),
           mentor: mentor,
           city: 'Chicago'
@@ -89,17 +89,17 @@ describe Availability do
     describe '::CITY_ROUTE_CONSTRAINT' do
       it 'should reject invalid cities' do
         Availability::CITY_ROUTE_CONSTRAINT.call(city:'atlantis')
-          .should be_false
+          .should eq nil
       end
 
       it 'should reject remote' do
         Availability::CITY_ROUTE_CONSTRAINT.call(city:'remote')
-          .should be_false
+          .should eq false
       end
 
       it 'should accept valid city' do
         Availability::CITY_ROUTE_CONSTRAINT.call(city:'san-francisco')
-          .should be_true
+          .should eq true
       end
     end
   end

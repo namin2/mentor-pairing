@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe MakesRecurringAvailabilities do
   context "#setup_recurring_availabilities?" do
@@ -67,14 +67,14 @@ describe MakesRecurringAvailabilities do
       }.to change(Availability, :count).by(1)
     end
   end
-  
+
   context "when scheduling weekly recurrences" do
     it "with 1 recurrence, creates 2 appointments" do
       mentor = FactoryGirl.create(:mentor)
       attributes = FactoryGirl.attributes_for(:availability)
       attributes.merge!("setup_recurring" => "1", "recur_weekly" => "1", "recur_num" => "1")
       maker = MakesRecurringAvailabilities.new(mentor, attributes)
-  
+
       expect {
         maker.make_availabilities
       }.to change(Availability, :count).by(2)
@@ -85,7 +85,7 @@ describe MakesRecurringAvailabilities do
       attributes = FactoryGirl.attributes_for(:availability)
       attributes.merge!("setup_recurring" => "1", "recur_weekly" => "1", "recur_num" => "2")
       maker = MakesRecurringAvailabilities.new(mentor, attributes)
-  
+
       maker.make_availabilities
       other_appointment_time = attributes[:start_time] + 14.days
       expect(Availability.last.start_time.to_i).to eq(other_appointment_time.to_i)
@@ -98,7 +98,7 @@ describe MakesRecurringAvailabilities do
       attributes = FactoryGirl.attributes_for(:availability)
       attributes.merge!("setup_recurring" => "1", "recur_weekly" => "2", "recur_num" => "1")
       maker = MakesRecurringAvailabilities.new(mentor, attributes)
-  
+
       maker.make_availabilities
       other_appointment_time = attributes[:start_time] + 14.days
       expect(Availability.last.start_time.to_i).to eq(other_appointment_time.to_i)
@@ -111,7 +111,7 @@ describe MakesRecurringAvailabilities do
       attributes = FactoryGirl.attributes_for(:availability)
       attributes.merge!("setup_recurring" => "1", "recur_weekly" => "4", "recur_num" => "1")
       maker = MakesRecurringAvailabilities.new(mentor, attributes)
-  
+
       maker.make_availabilities
       other_appointment_time = attributes[:start_time] + 28.days
       expect(Availability.last.start_time.to_i).to eq(other_appointment_time.to_i)

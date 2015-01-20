@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature "Mentor creates availability" do
   context "when the mentor provides valid input" do
