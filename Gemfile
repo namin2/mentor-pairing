@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 
-gem "compass-rails", "1.1.3"
+gem "compass-rails"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 gem "pg"
-gem "rails", '4.0.13'
-gem "sass-rails", '~>4.0.2'
+gem "rails", '4.2.0'
+gem "sass-rails"
 gem "susy"
 gem "uglifier"
 gem  "gravtastic"
